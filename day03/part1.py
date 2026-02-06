@@ -7,13 +7,21 @@ def find_largest_num(nums: str):
     return max(combinations)
 
 
+def find_largest_num2(nums: str):
+    nums = [int(n) for n in nums.strip()]
+
+    index, largest_left = max(enumerate(nums[: len(nums) - 1]), key=lambda x: x[1])
+    largest_right = max(nums[index + 1 :])
+    return int(str(largest_left) + str(largest_right))
+
+
 def main():
-    with open("test_puzzle.txt", "r") as f:
+    with open("puzzle.txt", "r") as f:
         puzzle = f.readlines()
 
     result = 0
     for nums in puzzle:
-        largest = find_largest_num(nums)
+        largest = find_largest_num2(nums)
         print(largest)
         result += largest
 
