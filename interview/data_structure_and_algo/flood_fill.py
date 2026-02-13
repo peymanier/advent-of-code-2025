@@ -6,7 +6,7 @@ def flood_fill(
 ) -> list[list[int]]:
     num_rows, num_cols = len(image), len(image[0])
 
-    def get_neighbours(coord, color):
+    def get_neighbours(coord):
         row, col = coord
 
         delta_row = [-1, 0, 1, 0]
@@ -16,8 +16,7 @@ def flood_fill(
             neighbour_col = col + delta_col[i]
 
             if 0 <= neighbour_row < num_rows and 0 <= neighbour_col < num_cols:
-                if image[neighbour_row][neighbour_col] == color:
-                    yield neighbour_row, neighbour_col
+                yield neighbour_row, neighbour_col
 
     def bfs(root):
         queue = deque([root])
@@ -29,8 +28,11 @@ def flood_fill(
         visited[i][j] = True
         while queue:
             node = queue.popleft()
-            for neighbour in get_neighbours(node, color):
+            for neighbour in get_neighbours(node):
                 i, j = neighbour
+                if image[i][j] != color:
+                    continue
+
                 if visited[i][j]:
                     continue
 
