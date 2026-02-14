@@ -1,4 +1,4 @@
-from tree import TreeNode
+from interview.structures.tree import TreeNode
 
 
 def tree_max_depth(root: TreeNode) -> int:

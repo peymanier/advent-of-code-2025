@@ -1,4 +1,4 @@
-from interview.data_structure_and_algo.linked_list import (
+from interview.structures.linked_list import (
     Node,
     build_linked_list,
     print_linked_list,
