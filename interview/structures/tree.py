@@ -66,14 +66,14 @@ class TreeNode:
 
         return self.right.get_max()
 
-    def print(self, level=0, prefix="root"):
-        print(f"{level * '  '}{prefix:5s}: val={self.val}")
+    def print(self, level=0, label="R"):
+        print(f"{level * '  '}{label}> {self.val}")
 
         if self.left:
-            self.left.print(level + 1, "left")
+            self.left.print(level + 1, label="l")
 
         if self.right:
-            self.right.print(level + 1, "right")
+            self.right.print(level + 1, label="r")
 
 
 def level_order_traversal(root: TreeNode) -> list[list[int]]:
