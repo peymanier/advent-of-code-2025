@@ -11,6 +11,9 @@ def is_balanced(string: str) -> bool:
         else:
             raise ValueError("invalid string")
 
+    if stack:
+        return False
+
     return True
 
 
@@ -18,7 +21,13 @@ def main():
     string = "(()(()))"
     print(is_balanced(string))
 
-    string = "(()))()"
+    string = "((()(()))"
+    print(is_balanced(string))
+
+    string = "("
+    print(is_balanced(string))
+
+    string = "())"
     print(is_balanced(string))
 
 
