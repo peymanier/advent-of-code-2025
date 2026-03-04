@@ -29,6 +29,27 @@ class TreeNode:
 
         return root
 
+    def insert(self, val):
+        if self.val is None:
+            self.val = val
+            return
+
+        if self.val == val:
+            return
+
+        if val > self.val:
+            if self.right is None:
+                self.right = TreeNode(val)
+                return
+
+            self.insert(self.right)
+        else:
+            if self.left is None:
+                self.left = TreeNode(val)
+                return
+
+            self.insert(self.left)
+
     def print(self, level=0, prefix="root"):
         print(f"{level * '  '}{prefix:5s}: val={self.val}")
 
