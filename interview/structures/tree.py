@@ -42,13 +42,29 @@ class TreeNode:
                 self.right = TreeNode(val)
                 return
 
-            self.insert(self.right)
+            self.right.insert(val)
         else:
             if self.left is None:
                 self.left = TreeNode(val)
                 return
 
-            self.insert(self.left)
+            self.left.insert(val)
+
+    def get_min(self):
+        curr = self
+        while curr.left:
+            curr = curr.left
+
+        return curr.val
+
+    def get_max(self):
+        if not self:
+            return None
+
+        if not self.right:
+            return self.val
+
+        return self.right.get_max()
 
     def print(self, level=0, prefix="root"):
         print(f"{level * '  '}{prefix:5s}: val={self.val}")
@@ -79,3 +95,18 @@ def level_order_traversal(root: TreeNode) -> list[list[int]]:
         result.append(level_vals)
 
     return result
+
+
+if __name__ == "__main__":
+    root = TreeNode(5)
+    root.insert(3)
+    root.insert(10)
+    root.insert(12)
+    root.insert(0)
+    root.insert(7)
+    root.insert(1)
+    root.insert(2)
+
+    root.print()
+    print("min", TreeNode.get_min(root))
+    print("max", TreeNode.get_max(root))
