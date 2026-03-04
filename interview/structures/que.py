@@ -73,6 +73,18 @@ class QueueLinkedList:
         self.tail.next = node
         self.tail = node
 
+    def remove_from_head(self):
+        if not self.head:
+            return None
+
+        head = self.head
+        self.head = head.next
+        if not self.head:
+            self.tail = None
+
+        head.next = None
+        return head
+
 
 if __name__ == "__main__":
     ll = QueueLinkedList()
@@ -80,6 +92,8 @@ if __name__ == "__main__":
     ll.add_to_tail(Node(6))
     ll.add_to_head(Node(0))
     ll.add_to_head(Node(-1))
+    ll.add_to_tail(Node(7))
+    ll.remove_from_head()
 
     for node in ll:
         print(node.val)
