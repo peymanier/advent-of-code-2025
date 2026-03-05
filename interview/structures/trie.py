@@ -79,7 +79,7 @@ def main():
     print(trie.exists("hel"))
     print(trie.exists("hello"))
 
-    bad_words = ["shit", "ass", "fuck"]
+    bad_words = ["shit", "shitty", "ass", "fuck", "hot garbage"]
     bad_words_trie = Trie()
 
     for word in bad_words:
