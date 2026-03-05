@@ -97,6 +97,18 @@ class TreeNode:
 
         return self.right.get_max()
 
+    def exists(self, val):
+        if self.val == val:
+            return True
+
+        if val > self.val and self.right:
+            return self.right.exists(val)
+
+        if val < self.val and self.left:
+            return self.left.exists(val)
+
+        return False
+
     def print(self, level=0, label="R"):
         print(f"{level * '  '}{label}> {self.val}")
 
@@ -196,3 +208,6 @@ if __name__ == "__main__":
     print(pre_order_traversal(root))
     print(in_order_traversal(root))
     print(post_order_traversal(root))
+
+    print("exists 7", root.exists(7))
+    print("exists 44", root.exists(44))
