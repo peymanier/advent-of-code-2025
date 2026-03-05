@@ -128,6 +128,57 @@ def level_order_traversal(root: TreeNode) -> list[list[int]]:
     return result
 
 
+def pre_order_traversal(root: TreeNode):
+    values = []
+
+    def pre_order(node):
+        if not node:
+            return None
+
+        values.append(node.val)
+        pre_order(node.left)
+        pre_order(node.right)
+
+        return None
+
+    pre_order(root)
+    return values
+
+
+def in_order_traversal(root: TreeNode):
+    values = []
+
+    def in_order(node):
+        if not node:
+            return None
+
+        in_order(node.left)
+        values.append(node.val)
+        in_order(node.right)
+
+        return None
+
+    in_order(root)
+    return values
+
+
+def post_order_traversal(root: TreeNode):
+    values = []
+
+    def post_order(node):
+        if not node:
+            return None
+
+        post_order(node.left)
+        post_order(node.right)
+        values.append(node.val)
+
+        return None
+
+    post_order(root)
+    return values
+
+
 if __name__ == "__main__":
     root = TreeNode(5)
     root.insert(3)
@@ -142,3 +193,6 @@ if __name__ == "__main__":
     root.print()
     print("min", TreeNode.get_min(root))
     print("max", TreeNode.get_max(root))
+    print(pre_order_traversal(root))
+    print(in_order_traversal(root))
+    print(post_order_traversal(root))
