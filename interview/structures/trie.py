@@ -51,6 +51,21 @@ class Trie:
         find(curr, prefix)
         return result
 
+    def find_matches(self, document) -> set[str]:
+        matches = set()
+        for i in range(len(document)):
+            curr = self.root
+            for j in range(i, len(document)):
+                c = document[j]
+                if c not in curr:
+                    break
+
+                curr = curr[c]
+                if self.end_symbol in curr:
+                    matches.add(document[i : j + 1])
+
+        return matches
+
 
 def main():
     trie = Trie()
@@ -63,6 +78,19 @@ def main():
     print(trie.suggestions("hel"))
     print(trie.exists("hel"))
     print(trie.exists("hello"))
+
+    bad_words = ["shit", "ass", "fuck"]
+    bad_words_trie = Trie()
+
+    for word in bad_words:
+        bad_words_trie.add(word)
+
+    document = (
+        "testing for bad words doc: is this a shitty code or hot garbage pile of code"
+        "the fucking choice is yours"
+    )
+    result = bad_words_trie.find_matches(document)
+    print(result)
 
 
 if __name__ == "__main__":
