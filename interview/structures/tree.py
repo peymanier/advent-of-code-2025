@@ -50,6 +50,37 @@ class TreeNode:
 
             self.left.insert(val)
 
+    def delete(self, val):
+        if self.val is None:
+            return None
+
+        if val > self.val:
+            if self.right:
+                self.right = self.right.delete(val)
+
+            return self
+
+        elif val < self.val:
+            if self.left:
+                self.left = self.left.delete(val)
+
+            return self
+
+        if not self.right:
+            return self.left
+
+        if not self.left:
+            return self.right
+
+        min_larger_node = self.right
+        while min_larger_node.left:
+            min_larger_node = min_larger_node.left
+
+        self.val = min_larger_node.val
+        self.right = self.right.delete(min_larger_node.val)
+
+        return self
+
     def get_min(self):
         curr = self
         while curr.left:
@@ -106,6 +137,7 @@ if __name__ == "__main__":
     root.insert(7)
     root.insert(1)
     root.insert(2)
+    root.delete(0)
 
     root.print()
     print("min", TreeNode.get_min(root))
