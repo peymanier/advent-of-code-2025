@@ -8,7 +8,7 @@ def prime_factors(n):
         factors.append(2)
         n = n // 2
 
-    for i in range(3, int(math.sqrt(n))):
+    for i in range(3, int(math.sqrt(n)), 2):
         while n % i == 0:
             n = n // i
             factors.append(i)
