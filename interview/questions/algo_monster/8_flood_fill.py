@@ -1,6 +1,11 @@
 from collections import deque
 
 
+# BFS on Grids
+# good practices:
+# store num_rows and num_cols early
+# have a get_neighbors function
+# visited in grids is not a set but also a grid
 def flood_fill(
     r: int, c: int, replacement: int, image: list[list[int]]
 ) -> list[list[int]]:

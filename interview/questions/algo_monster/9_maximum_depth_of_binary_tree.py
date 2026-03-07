@@ -1,6 +1,7 @@
 from interview.structures.tree import TreeNode
 
 
+# DFS
 def tree_max_depth(root: TreeNode) -> int:
     def dfs(node) -> int:
         if not node:
@@ -8,7 +9,7 @@ def tree_max_depth(root: TreeNode) -> int:
 
         return 1 + max(dfs(node.left), dfs(node.right))
 
-    return dfs(root) if root else 0
+    return dfs(root)
 
 
 def main():
