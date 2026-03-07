@@ -1,6 +1,7 @@
 import heapq
 
 
+# Priority Queue
 def kth_largest_element(nums: list[int], k: int) -> int:
     return heapq.nlargest(k, nums)[-1]
 

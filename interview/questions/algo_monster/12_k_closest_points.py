@@ -1,6 +1,8 @@
 import heapq
 
 
+# Priority Queues
+# repeatedly extract the largest/smallest elements
 def k_closest_points(points: list[list[int]], k: int) -> list[list[int]]:
     heap = []
     for x, y in points:
