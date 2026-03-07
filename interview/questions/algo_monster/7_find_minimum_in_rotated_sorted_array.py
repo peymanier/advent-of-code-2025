@@ -1,17 +1,17 @@
+# Binary Search
 def find_minimum_in_rotated_sorted_array(arr: list[int]) -> int:
     left, right = 0, len(arr) - 1
 
+    result = -1
     while left <= right:
-        if arr[left] <= arr[right]:
-            return left
-
         mid = (left + right) // 2
-        if arr[mid] >= arr[left]:
-            left = mid + 1
-        else:
+        if arr[mid] <= arr[-1]:
             right = mid - 1
+            result = mid
+        else:
+            left = mid + 1
 
-    return -1
+    return result
 
 
 def main():
@@ -23,7 +23,7 @@ def main():
     result = find_minimum_in_rotated_sorted_array(arr)
     print(result)
 
-    arr = [2, 3, 5, 7, 11, 13, 17, 19]
+    arr = [20, 2, 3, 5, 7, 11, 13, 17, 19]
     result = find_minimum_in_rotated_sorted_array(arr)
     print(result)
 

@@ -1,3 +1,6 @@
+# Hashmap
+# use a hashmap to remember what happened before
+# it can be built and used as you go
 def two_sum(nums: list[int], target: int) -> tuple[int, int]:
     nums_to_index = {}
     for i, num in enumerate(nums):

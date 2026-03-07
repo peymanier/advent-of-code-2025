@@ -1,6 +1,7 @@
 from collections import defaultdict
 
 
+# Sliding Window
 def find_longest_substr_without_repetition(s: str) -> int:
     left = 0
     result = 0
@@ -14,6 +15,7 @@ def find_longest_substr_without_repetition(s: str) -> int:
         window.add(s[right])
 
         result = max(result, len(window))
+        # result = max(result, right - left + 1)
 
     return result
 

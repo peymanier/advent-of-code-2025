@@ -1,3 +1,7 @@
+# Two Pointers
+# use two pointers to avoid nested loops, find halfway point or detect cycles in linked lists
+# usually works on pre-sorted data.
+# usually one of the pointers moves based on a condition
 def is_palindrome(s: str) -> bool:
     s = "".join([ch.lower() for ch in s if ch.isalnum()])
     left = 0

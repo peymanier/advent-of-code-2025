@@ -1,7 +1,12 @@
+# Sliding Window (like two pointers but over a range)
+# question that use the words: substring, subarray or consecutive elements
+# window can be fix sized or dynamic
+# fix: remove left, append right
+# dynamic: remove (based on condition: nothing, single, multiple) left, append right
 def max_subarray_of_length(nums: list[int], k: int) -> int:
     window = nums[0:k]
     result = sum(window)
-    for right in range(k + 1, len(nums)):
+    for right in range(k, len(nums)):
         left = right - k
         window = nums[left:right]
         result = max(result, sum(window))

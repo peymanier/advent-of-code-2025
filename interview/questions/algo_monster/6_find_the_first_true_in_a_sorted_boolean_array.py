@@ -1,3 +1,6 @@
+# Binary Search
+# when we have a list of data that has a monotonic(only changes in one direction) condition
+# it doesn't necessary have to be a sorted list
 def find_boundary(arr: list[bool]) -> int:
     left, right = 0, len(arr) - 1
     result = -1

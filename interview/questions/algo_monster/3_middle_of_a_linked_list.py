@@ -5,9 +5,10 @@ from interview.structures.linked_list import (
 )
 
 
+# Two Pointers
 def middle_of_linked_list(head: Node) -> int:
-    fast = head
     slow = head
+    fast = head
     while fast and fast.next:
         slow = slow.next
         fast = fast.next.next
