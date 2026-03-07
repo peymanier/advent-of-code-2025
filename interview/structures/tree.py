@@ -123,6 +123,7 @@ def level_order_traversal(root: TreeNode) -> list[list[int]]:
     result = []
     queue = deque([root])
     while queue:
+        # freeze the queue to be able to separate levels
         n = len(queue)
         level_vals = []
         for _ in range(n):
