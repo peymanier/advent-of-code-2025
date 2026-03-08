@@ -10,7 +10,21 @@ def quick_sort(nums: list[int]) -> None:
     return quick(0, len(nums) - 1)
 
 
+def find_pivot(nums, low, high):
+    l = (nums[low], low)
+
+    mid = (low + high) // 2
+    m = (nums[mid], mid)
+
+    h = (nums[high], high)
+
+    return sorted([l, m, h])[1][1]
+
+
 def partition(nums, low, high):
+    pi = find_pivot(nums, low, high)
+    nums[pi], nums[high] = nums[high], nums[pi]
+
     pivot = nums[high]
     i = low
 
