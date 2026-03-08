@@ -1,10 +1,13 @@
-def quick_sort(nums: list[int], low: int, high: int) -> None:
-    if low >= high:
-        return
+def quick_sort(nums: list[int]) -> None:
+    def quick(low, high):
+        if low >= high:
+            return
 
-    p = partition(nums, low, high)
-    quick_sort(nums, low, p - 1)
-    quick_sort(nums, p + 1, high)
+        p = partition(nums, low, high)
+        quick(low, p - 1)
+        quick(p + 1, high)
+
+    return quick(0, len(nums) - 1)
 
 
 def partition(nums, low, high):
@@ -22,7 +25,7 @@ def partition(nums, low, high):
 
 def main():
     nums = [8, 2, 8, 1, 3, 9, 5]
-    quick_sort(nums, 0, len(nums) - 1)
+    quick_sort(nums)
     print(nums)
 
 
