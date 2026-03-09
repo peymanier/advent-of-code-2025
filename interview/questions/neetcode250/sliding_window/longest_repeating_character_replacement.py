@@ -58,12 +58,31 @@ def find_longest_repeating_replacement_alt(s: str, k: int) -> int:
     return result
 
 
+# Best Solution O(26n)
+def find_longest_repeating_replacement_second_alt(s: str, k: int) -> int:
+    frequency_map = defaultdict(int)
+    result = 0
+    l = 0
+    for r in range(len(s)):
+        frequency_map[s[r]] += 1
+
+        while (r - l + 1) - max(frequency_map.values()) > k:
+            frequency_map[s[l]] -= 1
+            l += 1
+
+        result = max(result, (r - l + 1))
+
+    return result
+
+
 def main():
     s = "AABABBA"
     k = 1
     result = find_longest_repeating_replacement(s, k)
     print(result)
     result = find_longest_repeating_replacement_alt(s, k)
+    print(result)
+    result = find_longest_repeating_replacement_second_alt(s, k)
     print(result)
 
     print("-" * 10)
@@ -74,6 +93,8 @@ def main():
     print(result)
     result = find_longest_repeating_replacement_alt(s, k)
     print(result)
+    result = find_longest_repeating_replacement_second_alt(s, k)
+    print(result)
 
     print("-" * 10)
 
@@ -82,6 +103,8 @@ def main():
     result = find_longest_repeating_replacement(s, k)
     print(result)
     result = find_longest_repeating_replacement_alt(s, k)
+    print(result)
+    result = find_longest_repeating_replacement_second_alt(s, k)
     print(result)
 
 
