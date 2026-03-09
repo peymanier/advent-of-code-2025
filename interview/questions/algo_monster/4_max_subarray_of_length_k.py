@@ -4,9 +4,8 @@
 # fix: remove left, append right
 # dynamic: remove (based on condition: nothing, single, multiple) left, append right
 def max_subarray_of_length(nums: list[int], k: int) -> int:
-    window = nums[0:k]
-    result = sum(window)
-    for right in range(k, len(nums)):
+    result = 0
+    for right in range(k, len(nums) + 1):
         left = right - k
         window = nums[left:right]
         result = max(result, sum(window))
@@ -29,11 +28,11 @@ def max_subarray_of_length2(nums: list[int], k: int) -> int:
 
 
 def main():
-    nums = [1, 2, 3, 7, 4, 1]
+    nums = [1, 2, 3, 7, 4, 1, 20]
     k = 3
 
-    # result = max_subarray_of_length(nums, k)
-    # print(result)
+    result = max_subarray_of_length(nums, k)
+    print(result)
 
     result = max_subarray_of_length2(nums, k)
     print(result)
