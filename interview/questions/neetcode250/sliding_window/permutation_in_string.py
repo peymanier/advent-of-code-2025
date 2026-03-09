@@ -32,7 +32,8 @@ def has_permutation_alt(s1, s2) -> bool:
     return False
 
 
-def has_permutation_best(s1, s2) -> bool:
+# O(26n)
+def has_permutation_second_alt(s1, s2) -> bool:
     if len(s1) > len(s2):
         return False
 
@@ -52,12 +53,54 @@ def has_permutation_best(s1, s2) -> bool:
     return s1_counter == window_counter
 
 
+# Best O(26) + O(n)
+def has_permutation_third_alt(s1, s2) -> bool:
+    if len(s1) > len(s2):
+        return False
+
+    s1_count = [0] * 26
+    s2_count = [0] * 26
+    for i in range(len(s1)):
+        s1_count[ord(s1[i]) - ord("a")] += 1
+        s2_count[ord(s2[i]) - ord("a")] += 1
+
+    matches = 0
+    for i in range(26):
+        if s1_count[i] == s2_count[i]:
+            matches += 1
+
+    left = 0
+    for right in range(len(s1), len(s2)):
+        if matches == 26:
+            return True
+
+        index = ord(s2[right]) - ord("a")
+        s2_count[index] += 1
+        if s2_count[index] == s1_count[index]:
+            matches += 1
+        elif s2_count[index] - 1 == s1_count[index]:
+            matches -= 1
+
+        index = ord(s2[left]) - ord("a")
+        s2_count[index] -= 1
+        if s2_count[index] == s1_count[index]:
+            matches += 1
+        elif s2_count[index] + 1 == s1_count[index]:
+            matches -= 1
+
+        left += 1
+
+    return matches == 26
+
+
 def main():
     s1 = "ab"
     s2 = "eidbaooo"
     result = has_permutation_alt(s1, s2)
     print(result)
-    result = has_permutation_best(s1, s2)
+    result = has_permutation_second_alt(s1, s2)
+    print(result)
+    result = has_permutation_third_alt(s1, s2)
     print(result)
 
     print("-" * 10)
@@ -66,7 +109,9 @@ def main():
     s2 = "eidboaoo"
     result = has_permutation_alt(s1, s2)
     print(result)
-    result = has_permutation_best(s1, s2)
+    result = has_permutation_second_alt(s1, s2)
+    print(result)
+    result = has_permutation_third_alt(s1, s2)
     print(result)
 
     print("-" * 10)
@@ -75,7 +120,9 @@ def main():
     s2 = "baxyzabc"
     result = has_permutation_alt(s1, s2)
     print(result)
-    result = has_permutation_best(s1, s2)
+    result = has_permutation_second_alt(s1, s2)
+    print(result)
+    result = has_permutation_third_alt(s1, s2)
     print(result)
 
 
