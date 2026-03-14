@@ -7,6 +7,9 @@ class TreeNode:
         self.left = left
         self.right = right
 
+    def __repr__(self):
+        return f"{self.val}"
+
     @classmethod
     def from_list(cls, elements):
         root = cls(val=elements[0])
