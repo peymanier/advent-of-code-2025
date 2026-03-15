@@ -17,20 +17,36 @@ def preorder_traversal(root):
     return result
 
 
-def preorder_traversal_iter(root):
-    result = []
-    stack = []
-    curr = root
-    while curr or stack:
-        if not curr:
-            curr = stack.pop()
+# def preorder_traversal_iter(root):
+#     result = []
+#     stack = []
+#     curr = root
+#     while curr or stack:
+#         if not curr:
+#             curr = stack.pop()
+#
+#         result.append(curr.val)
+#
+#         if curr.right:
+#             stack.append(curr.right)
+#
+#         curr = curr.left
+#
+#     return result
 
+
+def preorder_traversal_iter(root):
+    stack = [root]
+    result = []
+    while stack:
+        curr = stack.pop()
         result.append(curr.val)
 
         if curr.right:
             stack.append(curr.right)
 
-        curr = curr.left
+        if curr.left:
+            stack.append(curr.left)
 
     return result
 
