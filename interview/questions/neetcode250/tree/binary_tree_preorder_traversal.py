@@ -60,7 +60,7 @@ def main():
     root.right = TreeNode(3)
     root.right.left = TreeNode(4)
     root.right.right = TreeNode(5)
-    result = preorder_traversal(root)
+    result = preorder_traversal_iter(root)
     val = [1, 2, 3, 4, 5]
     print("passed:", result == val, "expected", val, "got", result)
 
