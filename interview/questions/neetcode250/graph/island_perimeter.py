@@ -48,7 +48,7 @@ def island_perimeter(grid: list[list[int]]) -> int:
 
     for i in range(num_rows):
         for j in range(num_cols):
-            if result == 0:
+            if grid[i][j] == 1 and result == 0:
                 dfs((i, j))
 
     return result
