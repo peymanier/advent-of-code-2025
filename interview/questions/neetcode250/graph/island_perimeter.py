@@ -1,6 +1,3 @@
-from collections import deque
-
-
 def island_perimeter(grid: list[list[int]]) -> int:
     num_rows = len(grid)
     num_cols = len(grid[0])
