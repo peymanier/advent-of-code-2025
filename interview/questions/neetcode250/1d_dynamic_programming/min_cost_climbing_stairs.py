@@ -1,3 +1,4 @@
+import sys
 import time
 from functools import cache
 
@@ -61,20 +62,24 @@ def main():
     val = 6
     print("passed:", result == val, "expected", val, "got", result)
 
-    costs = [1, 100, 1, 1, 1, 100, 1, 1, 100, 1] * 45
+    print("current recursion limit", sys.getrecursionlimit())
+    sys.setrecursionlimit(5000)
+    print("new recursion limit", sys.getrecursionlimit())
+
+    costs = [1, 100, 1, 1, 100, 100, 100, 1, 100, 1] * 100
     start = time.perf_counter()
     result = min_cost_climbing_stairs_builtin_cache(costs)
     end = time.perf_counter()
     print("duration:", (end - start))
-    val = 270
+    val = 10500
     print("passed:", result == val, "expected", val, "got", result)
 
-    costs = [1, 100, 1, 1, 1, 100, 1, 1, 100, 1] * 45
+    costs = [1, 100, 1, 1, 100, 100, 100, 1, 100, 1] * 100
     start = time.perf_counter()
     result = min_cost_climbing_stairs_personal_tailored_cache(costs)
     end = time.perf_counter()
     print("duration:", (end - start))
-    val = 270
+    val = 10500
     print("passed:", result == val, "expected", val, "got", result)
 
 
