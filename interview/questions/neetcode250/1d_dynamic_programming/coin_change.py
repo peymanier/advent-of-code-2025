@@ -1,22 +1,40 @@
-def coin_change(coins: list[int], amount: int) -> int:
-    result = float("inf")
+import functools
 
+
+def cache_coin_change(func):
+    cache = {}
+
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        amount, current_count = args
+
+        if amount in cache:
+            return current_count + cache[amount]
+
+        result = func(*args, **kwargs)
+
+        cache[amount] = result - current_count
+        return result
+
+    return wrapper
+
+
+def coin_change(coins: list[int], amount: int) -> int:
+    @cache_coin_change
     def change(amt, count):
         if amt < 0:
-            return
+            return float("inf")
 
         if amt == 0:
-            nonlocal result
-            result = min(result, count)
-            return
+            return count
 
+        candidates = []
         for coin in coins:
-            change(amt - coin, count + 1)
+            candidates.append(change(amt - coin, count + 1))
 
-        return
+        return min(candidates)
 
-    change(amount, 0)
-    return result if result != float("inf") else -1
+    return change(amount, 0)
 
 
 def main():
