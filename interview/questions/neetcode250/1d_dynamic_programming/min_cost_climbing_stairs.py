@@ -1,8 +1,24 @@
-from functools import cache
+def cache_climb(func):
+    cache = {}
+
+    def wrapper(*args, **kwargs):
+        step, current_cost = args
+        if step in cache:
+            return current_cost + cache[step]
+
+        result = func(*args, **kwargs)
+
+        cache[step] = result - current_cost
+        return result
+
+    return wrapper
 
 
 def min_cost_climbing_stairs(costs: list[int]) -> int:
-    @cache
+    # from functools import cache
+    #
+    # @cache
+    @cache_climb
     def climb(step: int, cost: int):
         if step > len(costs):
             return float("inf")
@@ -28,9 +44,9 @@ def main():
     val = 6
     print("passed:", result == val, "expected", val, "got", result)
 
-    costs = [1, 100, 1, 1, 1, 100, 1, 1, 100, 1] * 40
+    costs = [1, 100, 1, 1, 1, 100, 1, 1, 100, 1] * 45
     result = min_cost_climbing_stairs(costs)
-    val = 240
+    val = 270
     print("passed:", result == val, "expected", val, "got", result)
 
 
