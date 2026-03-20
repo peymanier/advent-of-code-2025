@@ -1,3 +1,7 @@
+import time
+from functools import cache
+
+
 def cache_climb(func):
     cache = {}
 
@@ -14,10 +18,23 @@ def cache_climb(func):
     return wrapper
 
 
-def min_cost_climbing_stairs(costs: list[int]) -> int:
-    # from functools import cache
-    #
-    # @cache
+def min_cost_climbing_stairs_builtin_cache(costs: list[int]) -> int:
+    @cache
+    def climb(step: int, cost: int):
+        if step > len(costs):
+            return float("inf")
+
+        if step == len(costs):
+            return cost
+
+        return min(
+            climb(step + 1, cost + costs[step]), climb(step + 2, cost + costs[step])
+        )
+
+    return min(climb(0, 0), climb(1, 0))
+
+
+def min_cost_climbing_stairs_personal_tailored_cache(costs: list[int]) -> int:
     @cache_climb
     def climb(step: int, cost: int):
         if step > len(costs):
@@ -35,17 +52,28 @@ def min_cost_climbing_stairs(costs: list[int]) -> int:
 
 def main():
     costs = [10, 15, 20]
-    result = min_cost_climbing_stairs(costs)
+    result = min_cost_climbing_stairs_builtin_cache(costs)
     val = 15
     print("passed:", result == val, "expected", val, "got", result)
 
     costs = [1, 100, 1, 1, 1, 100, 1, 1, 100, 1]
-    result = min_cost_climbing_stairs(costs)
+    result = min_cost_climbing_stairs_builtin_cache(costs)
     val = 6
     print("passed:", result == val, "expected", val, "got", result)
 
     costs = [1, 100, 1, 1, 1, 100, 1, 1, 100, 1] * 45
-    result = min_cost_climbing_stairs(costs)
+    start = time.perf_counter()
+    result = min_cost_climbing_stairs_builtin_cache(costs)
+    end = time.perf_counter()
+    print("duration:", (end - start))
+    val = 270
+    print("passed:", result == val, "expected", val, "got", result)
+
+    costs = [1, 100, 1, 1, 1, 100, 1, 1, 100, 1] * 45
+    start = time.perf_counter()
+    result = min_cost_climbing_stairs_personal_tailored_cache(costs)
+    end = time.perf_counter()
+    print("duration:", (end - start))
     val = 270
     print("passed:", result == val, "expected", val, "got", result)
 
