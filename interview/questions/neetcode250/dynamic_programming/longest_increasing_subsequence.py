@@ -1,3 +1,6 @@
+import time
+
+
 def longest_increasing_subsequence(nums: list[int]) -> int:
     def longest(index: int, count: int):
         candidates = []
@@ -52,9 +55,29 @@ def longest_increasing_subsequence_with_cache(nums: list[int]) -> int:
     return max(choices)
 
 
+def longest_increasing_subsequence_dp(nums: list[int]) -> int:
+    lis = [0 for _ in range(len(nums))]
+    lis[-1] = 1
+
+    for i in range(len(nums) - 2, 0, -1):
+        candidates = [1]
+        for j in range(i + 1, len(nums)):
+            if nums[j] > nums[i]:
+                candidates.append(1 + lis[j])
+
+        lis[i] = max(candidates)
+
+    return max(lis)
+
+
 def main():
     nums = [10, 9, 2, 5, 3, 7, 101, 18]
     result = longest_increasing_subsequence(nums)
+    val = 4
+    print("passed:", result == val, "expected", val, "got", result)
+
+    nums = [10, 9, 2, 5, 3, 7, 101, 18]
+    result = longest_increasing_subsequence_dp(nums)
     val = 4
     print("passed:", result == val, "expected", val, "got", result)
 
@@ -63,7 +86,10 @@ def main():
     val = 3
     print("passed:", result == val, "expected", val, "got", result)
 
-    import time
+    nums = [20, 1, 2, 1, 2, 5, 1]
+    result = longest_increasing_subsequence_dp(nums)
+    val = 3
+    print("passed:", result == val, "expected", val, "got", result)
 
     nums = [20, 1, 2, 1, 2, 5, 1] * 50
     start = time.perf_counter()
@@ -76,6 +102,14 @@ def main():
     nums = [20, 1, 2, 1, 2, 5, 1] * 50
     start = time.perf_counter()
     result = longest_increasing_subsequence_with_cache(nums)
+    end = time.perf_counter()
+    print("duration", f"{end - start:.4f} seconds")
+    val = 4
+    print("passed:", result == val, "expected", val, "got", result)
+
+    nums = [20, 1, 2, 1, 2, 5, 1] * 50
+    start = time.perf_counter()
+    result = longest_increasing_subsequence_dp(nums)
     end = time.perf_counter()
     print("duration", f"{end - start:.4f} seconds")
     val = 4
