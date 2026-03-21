@@ -20,14 +20,13 @@ def longest_increasing_subsequence(nums: list[int]) -> int:
 def cache_longest_increasing_subsequence(func):
     cache = {}
 
-    def wrapper(*args, **kwargs):
-        index, current_count = args
+    def wrapper(index, count):
         if index in cache:
-            return cache[index] + current_count
+            return cache[index] + count
 
-        result = func(*args, **kwargs)
+        result = func(index, count)
 
-        cache[index] = result - current_count
+        cache[index] = result - count
         return result
 
     return wrapper
