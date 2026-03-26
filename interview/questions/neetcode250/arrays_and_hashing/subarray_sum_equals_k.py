@@ -15,6 +15,19 @@
 #     return sum(choices)
 
 
+# def subarray_sum_equals_k(nums: list[int], k: int) -> int:
+#     result = 0
+#     for i in range(len(nums)):
+#         curr_sum = 0
+#         for j in range(i, len(nums)):
+#             curr_sum += nums[j]
+#             if curr_sum == k:
+#                 result += 1
+#                 break
+#
+#     return result
+
+
 def subarray_sum_equals_k(nums: list[int], k: int) -> int:
     prefix_sum_count = {0: 1}
     result = 0
