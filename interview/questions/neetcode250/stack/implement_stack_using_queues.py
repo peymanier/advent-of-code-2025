@@ -1,5 +1,21 @@
 from collections import deque
 
+# class MyStack:
+#     def __init__(self):
+#         self.que = deque()
+#
+#     def push(self, val) -> None:
+#         return self.que.append(val)
+#
+#     def pop(self) -> int:
+#         return self.que.pop()
+#
+#     def top(self) -> int:
+#         return self.que[-1]
+#
+#     def empty(self) -> bool:
+#         return len(self.que) == 0
+
 
 class MyStack:
     def __init__(self):
@@ -9,7 +25,12 @@ class MyStack:
         return self.que.append(val)
 
     def pop(self) -> int:
-        return self.que.pop()
+        count = len(self.que) - 1
+        while count:
+            self.push(self.que.popleft())
+            count -= 1
+
+        return self.que.popleft()
 
     def top(self) -> int:
         return self.que[-1]
