@@ -6,12 +6,15 @@ class MyQueue:
         return self.stack.append(val)
 
     def pop(self) -> int:
-        temp = [None] * (len(self.stack) - 1)
-        for i in range(len(temp) - 1, -1, -1):
-            temp[i] = self.stack.pop()
+        stack = []
+        for _ in range(len(self.stack)):
+            stack.append(self.stack.pop())
 
-        result = self.stack.pop()
-        self.stack = temp
+        result = stack.pop()
+
+        for _ in range(len(stack)):
+            self.stack.append(stack.pop())
+
         return result
 
     def peek(self) -> int:
