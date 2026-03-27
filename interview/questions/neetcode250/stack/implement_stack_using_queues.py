@@ -26,9 +26,8 @@ class MyStack:
 
     def pop(self) -> int:
         count = len(self.que) - 1
-        while count:
+        for _ in range(count):
             self.push(self.que.popleft())
-            count -= 1
 
         return self.que.popleft()
 
