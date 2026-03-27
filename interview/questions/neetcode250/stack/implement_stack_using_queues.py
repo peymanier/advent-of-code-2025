@@ -6,13 +6,13 @@ class MyStack:
         self.que = deque()
 
     def push(self, val) -> None:
-        return self.que.appendleft(val)
+        return self.que.append(val)
 
     def pop(self) -> int:
-        return self.que.popleft()
+        return self.que.pop()
 
     def top(self) -> int:
-        return self.que[0]
+        return self.que[-1]
 
     def empty(self) -> bool:
         return len(self.que) == 0
