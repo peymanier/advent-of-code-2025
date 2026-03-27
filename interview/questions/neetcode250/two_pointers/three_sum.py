@@ -43,7 +43,7 @@ def three_sum(nums: list[int]) -> list[list[int]]:
     return result
 
 
-def deep_diff(l1: list[list], l2: list[list]):
+def deep_nested_cmp(l1: list[list], l2: list[list]):
     result1 = []
     for sublist in l1:
         result1.append(sorted(sublist))
@@ -59,12 +59,12 @@ def main():
     nums = [-3, 3, 4, -3, 1, 2]
     result = three_sum(nums)
     val = [[-3, 1, 2]]
-    print("passed:", deep_diff(result, val), "expected", val, "got", result)
+    print("passed:", deep_nested_cmp(result, val), "expected", val, "got", result)
 
     nums = [-1, 0, 1, 2, -1, -4]
     result = three_sum(nums)
     val = [[-1, 0, 1], [-1, -1, 2]]
-    print("passed:", deep_diff(result, val), "expected", val, "got", result)
+    print("passed:", deep_nested_cmp(result, val), "expected", val, "got", result)
 
 
 if __name__ == "__main__":

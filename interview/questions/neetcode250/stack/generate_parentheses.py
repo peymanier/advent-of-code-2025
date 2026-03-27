@@ -20,7 +20,7 @@ def generate_parentheses(n: int) -> list[str]:
     return result
 
 
-def deep_compare(l1: list[str], l2: list[str]):
+def deep_cmp(l1: list[str], l2: list[str]):
     return sorted(l1) == sorted(l2)
 
 
@@ -28,7 +28,7 @@ def main():
     n = 3
     result = generate_parentheses(n)
     val = ["((()))", "(()())", "(())()", "()(())", "()()()"]
-    print("passed:", deep_compare(result, val), "expected", val, "got", result)
+    print("passed:", deep_cmp(result, val), "expected", val, "got", result)
 
     n = 1
     result = generate_parentheses(n)
