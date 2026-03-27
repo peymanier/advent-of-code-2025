@@ -1,27 +1,53 @@
+# class MyQueue:
+#     def __init__(self):
+#         self.stack = []
+#
+#     def push(self, val) -> None:
+#         return self.stack.append(val)
+#
+#     def pop(self) -> int:
+#         stack = []
+#         for _ in range(len(self.stack)):
+#             stack.append(self.stack.pop())
+#
+#         result = stack.pop()
+#
+#         for _ in range(len(stack)):
+#             self.stack.append(stack.pop())
+#
+#         return result
+#
+#     def peek(self) -> int:
+#         return self.stack[0]
+#
+#     def empty(self) -> bool:
+#         return len(self.stack) == 0
+
+
 class MyQueue:
     def __init__(self):
-        self.stack = []
+        self.stack1 = []
+        self.stack2 = []
 
     def push(self, val) -> None:
-        return self.stack.append(val)
+        return self.stack1.append(val)
 
     def pop(self) -> int:
-        stack = []
-        for _ in range(len(self.stack)):
-            stack.append(self.stack.pop())
+        for _ in range(len(self.stack1)):
+            self.stack2.append(self.stack1.pop())
 
-        result = stack.pop()
-
-        for _ in range(len(stack)):
-            self.stack.append(stack.pop())
-
-        return result
+        return self.stack2.pop()
 
     def peek(self) -> int:
-        return self.stack[0]
+        for _ in range(len(self.stack1)):
+            self.stack2.append(self.stack1.pop())
+
+        result = self.stack2.pop()
+        self.stack2.append(result)
+        return result
 
     def empty(self) -> bool:
-        return len(self.stack) == 0
+        return len(self.stack1) == 0 and len(self.stack2) == 0
 
 
 def main():
@@ -44,6 +70,25 @@ def main():
 
     result = q.pop()
     val = 2
+    print("passed:", result == val, "expected", val, "got", result)
+
+    result = q.empty()
+    val = False
+    print("passed:", result == val, "expected", val, "got", result)
+
+    q.push(10)
+    q.push(11)
+
+    result = q.peek()
+    val = 10
+    print("passed:", result == val, "expected", val, "got", result)
+
+    result = q.pop()
+    val = 10
+    print("passed:", result == val, "expected", val, "got", result)
+
+    result = q.pop()
+    val = 11
     print("passed:", result == val, "expected", val, "got", result)
 
     result = q.pop()
