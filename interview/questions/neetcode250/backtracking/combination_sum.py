@@ -1,25 +1,54 @@
+# def combination_sum(nums: list[int], target: int) -> int:
+#     result = []
+#
+#     subset = []
+#
+#     def dfs(curr_sum: int):
+#         if curr_sum > target:
+#             return
+#
+#         if curr_sum == target:
+#             result.append(subset.copy())
+#             return
+#
+#         for i in range(len(nums)):
+#             subset.append(nums[i])
+#             dfs(curr_sum + nums[i])
+#             subset.pop()
+#
+#         return
+#
+#     dfs(0)
+#     return len(set([tuple(sorted(comb)) for comb in result]))
+
+
 def combination_sum(nums: list[int], target: int) -> int:
     result = []
 
-    subset = []
+    curr = []
 
-    def dfs(curr_sum: int):
+    def dfs(i, curr_sum: int):
+        if i >= len(nums):
+            return
+
         if curr_sum > target:
             return
 
         if curr_sum == target:
-            result.append(subset.copy())
+            result.append(curr.copy())
             return
 
-        for i in range(len(nums)):
-            subset.append(nums[i])
-            dfs(curr_sum + nums[i])
-            subset.pop()
+        curr.append(nums[i])
+        dfs(i, curr_sum + nums[i])
+        curr.pop()
+
+        dfs(i + 1, curr_sum)
 
         return
 
-    dfs(0)
-    return len(set([tuple(sorted(comb)) for comb in result]))
+    dfs(0, 0)
+    print(result)
+    return len(result)
 
 
 def main():
