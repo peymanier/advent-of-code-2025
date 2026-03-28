@@ -28,14 +28,11 @@ def combination_sum(nums: list[int], target: int) -> int:
     curr = []
 
     def dfs(i, curr_sum: int):
-        if i >= len(nums):
-            return
-
-        if curr_sum > target:
-            return
-
         if curr_sum == target:
             result.append(curr.copy())
+            return
+
+        if curr_sum > target or i >= len(nums):
             return
 
         curr.append(nums[i])
