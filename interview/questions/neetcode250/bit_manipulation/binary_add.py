@@ -62,18 +62,21 @@ class Test(unittest.TestCase):
         expected = "100"
         self.assertEqual(expected, got)
 
+    def test2(self):
         a = "1010"
         b = "1011"
         got = add_binary(a, b)
         expected = "10101"
         self.assertEqual(expected, got)
 
+    def test3(self):
         a = "111"
         b = "111"
         got = add_binary(a, b)
         expected = "1110"
         self.assertEqual(expected, got)
 
+    def test4(self):
         a = "10"
         b = "101"
         got = add_binary(a, b)
