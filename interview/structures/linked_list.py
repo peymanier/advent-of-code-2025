@@ -20,6 +20,16 @@ def build_linked_list(elements: list) -> Node:
     return nodes[0]
 
 
+def get_linked_list(head: Node) -> list:
+    result = []
+    curr = head
+    while curr:
+        result.append(curr.val)
+        curr = curr.next
+
+    return result
+
+
 def print_linked_list(head: Node):
     curr = head
     while curr:
