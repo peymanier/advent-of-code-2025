@@ -1,11 +1,26 @@
-import re
+def findall(src, dest):
+    if len(src) > len(dest):
+        return []
+
+    results = []
+    left = 0
+    right = len(dest)
+    step = len(src)
+    while left + step <= right:
+        curr = dest[left : left + step]
+        if curr == src:
+            results.append(curr)
+
+        left += 1
+
+    return results
 
 
 def is_invalid_id(num: int):
     num_str = str(num)
 
     for i in range(1, int(len(num_str) / 2) + 1):
-        matches = re.findall(num_str[:i], num_str)
+        matches = findall(num_str[:i], num_str)
         if "".join(matches) == num_str:
             return True
 
@@ -13,7 +28,7 @@ def is_invalid_id(num: int):
 
 
 def main():
-    with open("puzzle.txt", "r") as f:
+    with open("test_puzzle.txt", "r") as f:
         puzzle = f.read()
 
     result = 0
